@@ -129,7 +129,7 @@ effects:
 When you use `/timerplugin configgui`, you'll see:
 
 - 🔨 **Time Mace Config** - Configure dash count, cooldowns, explosion settings
-- ⏰ **Timer Config** - Set visibility, max days, modification limits  
+- ⏰ **Timer Config** - Set visibility, max days, modification limits
 - 🔄 **Reload Config** - Apply changes from config.yml
 
 **Timer Config Options:**
@@ -204,19 +204,3 @@ If you encounter any issues:
 ## 📄 License
 
 This plugin is provided as-is with no warranty. You are free to use and modify it for your own server.
-
-## 👨‍💻 Developer
-
-**Made with ❤️ by Realisticrave**
-
-### 🔗 Connect with Realisticrave:
-- 🎥 **YouTube**: [https://www.youtube.com/@Realisticrave](https://www.youtube.com/@Realisticrave)
-- 💬 **Discord**: [https://discord.gg/AgFQkNRaSe](https://discord.gg/AgFQkNRaSe)
-- 🐙 **GitHub**: [https://github.com/Realisticrave1](https://github.com/Realisticrave1)
-
-### 🙏 Support the Developer
-If you enjoy this plugin, consider:
-- ⭐ Starring the repository on GitHub
-- 📺 Subscribing to the YouTube channel
-- 💬 Joining the Discord community for support and updates
-- 🐛 Reporting bugs and suggesting features

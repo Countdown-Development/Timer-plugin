@@ -97,6 +97,8 @@ effects:
 | `/timerplugin setmacestrength <strength>` | 💪 Set dash strength | `timerplugin.admin` | `/timerplugin setmacestrength 3.0` |
 | `/timerplugin toggleexplosion` | 💥 Toggle time explosions | `timerplugin.admin` | `/timerplugin toggleexplosion` |
 | `/timerplugin setexplosionradius <blocks>` | 📏 Set explosion radius | `timerplugin.admin` | `/timerplugin setexplosionradius 12` |
+| `/timerplugin macestatus` | 🔍 Check Time Mace crafting status | `timerplugin.admin` | `/timerplugin macestatus` |
+| `/timerplugin resetmace` | 🔄 Reset mace status (allow crafting again) | `timerplugin.admin` | `/timerplugin resetmace` |
 
 ### 📝 Command Examples
 
@@ -169,6 +171,17 @@ effects:
 /timerplugin toggleexplosion
 ```
 *Enable/disable time explosion feature*
+
+**Managing the unique Time Mace:**
+```
+/timerplugin macestatus
+```
+*Check if the Time Mace has been crafted*
+
+```
+/timerplugin resetmace
+```
+*Reset mace status - allows someone to craft it again*
 
 ### ⌨️ Tab Completion Features
 
@@ -246,11 +259,14 @@ All configuration options in the GUIs are **click-to-cycle** - simply click on a
 - 🖱️ Right-click to open a GUI to add or remove days from the timer
 - 💀 Single-use item consumed after modification
 
-### 🔨 Time Mace
+### 🔨 Time Mace ⚡ UNIQUE LEGENDARY WEAPON
 - 🏃 Allows you to dash forward (3 charges by default)
 - 💥 Shift + right-click creates a time explosion that affects nearby players
 - 💎 Uses custom Heart of the Sea in crafting
 - ⏳ Has a cooldown period when charges are depleted
+- 👑 **ONLY ONE can exist per server** - first to craft it wins!
+- 🎉 **Server-wide announcement** when crafted
+- ⚡ **Special effects** for the legendary crafter
 
 ## 🖥️ Configuration GUI
 
@@ -294,6 +310,7 @@ If you encounter any issues:
 - ➕➖ **Dynamic Timer Limits**: Commands to adjust max add/remove days on-the-fly
 - 👁️ **Timer Visibility Toggle**: Admins can hide the timer from players completely
 - 🎛️ **Real-Time Configuration**: All changes take effect immediately without server restart
+- 👑 **Unique Time Mace**: Only one Time Mace can exist per server - legendary exclusivity!
 
 ### 🔄 Updated Features
 - 📝 **Streamlined Commands**: Focused command set with organized help menu

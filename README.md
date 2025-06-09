@@ -22,7 +22,7 @@ A Minecraft Spigot plugin that adds a global timer with Time Mace mechanics. Pla
 - Creates unforgettable legendary moments for your server
 
 ### ⚔️ **Regular Mace Scarcity System**
-- **Only 2 regular maces** can be crafted per server
+- **Only 3 regular maces** can be crafted per server
 - **Only 1 Time Mace** can exist (legendary unique weapon)
 - Server announcements track remaining crafts
 - Title displays when limits are reached
@@ -50,7 +50,7 @@ A Minecraft Spigot plugin that adds a global timer with Time Mace mechanics. Pla
 - Regular mace must be crafted first
 - Once crafted, no more Time Maces can be made until reset by admin
 
-### ⚔️ Regular Mace (Limited to 2 per server)
+### ⚔️ Regular Mace (Limited to 3 per server)
 ```
 [   ] [ I ] [   ]
 [   ] [ S ] [   ]
@@ -62,7 +62,7 @@ A Minecraft Spigot plugin that adds a global timer with Time Mace mechanics. Pla
 
 **Requirements:**
 - Standard Minecraft mace recipe
-- Only 2 can be crafted per server
+- Only 3 can be crafted per server
 - Used as ingredient for Time Mace
 
 ## 📦 Installation
@@ -176,7 +176,7 @@ effects:
 ```
 /timerplugin macestatus
 ```
-*Shows Time Mace status (CRAFTED/AVAILABLE) and regular mace count (X/2)*
+*Shows Time Mace status (CRAFTED/AVAILABLE) and regular mace count (X/3)*
 
 **Resetting mace limits:**
 ```
@@ -250,7 +250,7 @@ Special testing commands are available exclusively for the plugin developer:
 
 ### ⚔️ Regular Mace (Limited Edition)
 - 🛠️ Standard Minecraft mace with limited availability
-- 📊 **Only 2 can be crafted per server**
+- 📊 **Only 3 can be crafted per server**
 - 🔧 Required ingredient for Time Mace crafting
 - 🎯 Creates strategic value through scarcity
 
@@ -288,7 +288,7 @@ If you encounter any issues:
 
 ### ✅ New Features Added in v6.4
 - 🎆 **Epic Title Displays**: Server-wide announcements when Time Mace is crafted
-- ⚔️ **Regular Mace Limiting**: Only 2 regular maces can be crafted per server
+- ⚔️ **Regular Mace Limiting**: Only 3 regular maces can be crafted per server
 - 🛠️ **Enhanced Admin Tools**: New reset commands and management GUI
 - 📊 **Improved Status Tracking**: Better mace count display throughout plugin
 - 🎬 **Cinematic Moments**: Legendary crafting creates memorable server events

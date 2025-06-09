@@ -37,9 +37,9 @@ A Minecraft Spigot plugin that adds a global timer with Time Mace mechanics. Pla
 
 ### ⚡ Time Mace (Legendary Unique)
 ```
-[ H ] [ H ] [ H ]
+[   ] [ H ] [   ]
 [ H ] [ M ] [ H ]
-[ H ] [ H ] [ H ]
+[   ] [ H ] [   ]
 ```
 - **H** = Heart of the Sea (obtained from killing players)
 - **M** = Regular Mace

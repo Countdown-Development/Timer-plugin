@@ -7,9 +7,63 @@ A Minecraft Spigot plugin that adds a global timer with Time Mace mechanics. Pla
 - ⏰ **Global Timer Display**: Shows time remaining as a boss bar for all players (can be hidden)
 - ⚔️ **Kill Rewards**: Players who kill others receive special items to modify the timer
 - 🔨 **Time Mace**: Dash forward and create time explosions
+- 🎆 **Epic Announcements**: Server-wide title displays when legendary items are crafted
+- ⚔️ **Mace Scarcity System**: Limited crafting for strategic gameplay
 - 🖥️ **Dynamic GUI**: Centered modification interface regardless of configuration
 - ⚙️ **Admin Configuration**: In-game GUI for easy configuration
 - 🎛️ **Fully Configurable**: Customize all aspects of the plugin through the config
+
+## 🆕 What's New in v6.4 - Mace Mastery Update
+
+### 🎬 **Epic Title Displays**
+- **Server-wide announcements** when the Time Mace is crafted
+- All players see dramatic titles: "⚡ LEGENDARY CRAFT! ⚡"
+- Special crafter recognition: "🎉 LEGENDARY WIELDER! 🎉"
+- Creates unforgettable legendary moments for your server
+
+### ⚔️ **Regular Mace Scarcity System**
+- **Only 2 regular maces** can be crafted per server
+- **Only 1 Time Mace** can exist (legendary unique weapon)
+- Server announcements track remaining crafts
+- Title displays when limits are reached
+
+### 🛠️ **Enhanced Admin Tools**
+- New `/timerplugin resetregularmaces` command
+- New `/timerplugin resetallmaces` command  
+- Enhanced `/timerplugin macestatus` with full statistics
+- **Mace Crafting Management GUI** with click-to-reset options
+
+## 🔨 Crafting Recipes
+
+### ⚡ Time Mace (Legendary Unique)
+```
+[ H ] [ H ] [ H ]
+[ H ] [ M ] [ H ]
+[ H ] [ H ] [ H ]
+```
+- **H** = Heart of the Sea (obtained from killing players)
+- **M** = Regular Mace
+- **Result**: 1x Time Mace (only ONE can exist per server!)
+
+**Requirements:**
+- Must use Heart of the Sea obtained from killing players
+- Regular mace must be crafted first
+- Once crafted, no more Time Maces can be made until reset by admin
+
+### ⚔️ Regular Mace (Limited to 2 per server)
+```
+[   ] [ I ] [   ]
+[   ] [ S ] [   ]
+[   ] [ S ] [   ]
+```
+- **I** = Heavy Core
+- **S** = Stick
+- **Result**: 1x Regular Mace
+
+**Requirements:**
+- Standard Minecraft mace recipe
+- Only 2 can be crafted per server
+- Used as ingredient for Time Mace
 
 ## 📦 Installation
 
@@ -47,6 +101,15 @@ time-mace:
     duration: 5        # Seconds
     slowness-level: 3  # Effect amplifier
     enabled: true
+  unique:
+    crafted: false     # Auto-managed: whether Time Mace exists
+```
+
+### ⚔️ Regular Mace Settings
+
+```yaml
+regular-maces:
+  crafted: 0           # Auto-managed: count of regular maces crafted
 ```
 
 ### 🎭 Effects Settings
@@ -74,7 +137,7 @@ effects:
 ```
 /timerplugin info
 ```
-*Shows current timer status, visibility, and configuration limits.*
+*Shows current timer status, visibility, configuration limits, and mace crafting status.*
 
 ### 👑 Admin Commands
 
@@ -97,35 +160,38 @@ effects:
 | `/timerplugin setmacestrength <strength>` | 💪 Set dash strength | `timerplugin.admin` | `/timerplugin setmacestrength 3.0` |
 | `/timerplugin toggleexplosion` | 💥 Toggle time explosions | `timerplugin.admin` | `/timerplugin toggleexplosion` |
 | `/timerplugin setexplosionradius <blocks>` | 📏 Set explosion radius | `timerplugin.admin` | `/timerplugin setexplosionradius 12` |
-| `/timerplugin macestatus` | 🔍 Check Time Mace crafting status | `timerplugin.admin` | `/timerplugin macestatus` |
-| `/timerplugin resetmace` | 🔄 Reset mace status (allow crafting again) | `timerplugin.admin` | `/timerplugin resetmace` |
+
+### 🆕 Mace Management Commands (New in v6.4)
+
+| Command | Description | Permission | Usage |
+|---------|-------------|------------|-------|
+| `/timerplugin macestatus` | 🔍 Check all mace crafting status | `timerplugin.admin` | `/timerplugin macestatus` |
+| `/timerplugin resetmace` | 🔄 Reset Time Mace status | `timerplugin.admin` | `/timerplugin resetmace` |
+| `/timerplugin resetregularmaces` | ⚔️ Reset regular mace count | `timerplugin.admin` | `/timerplugin resetregularmaces` |
+| `/timerplugin resetallmaces` | 🔄 Reset all mace limits | `timerplugin.admin` | `/timerplugin resetallmaces` |
 
 ### 📝 Command Examples
+
+**Checking mace status:**
+```
+/timerplugin macestatus
+```
+*Shows Time Mace status (CRAFTED/AVAILABLE) and regular mace count (X/2)*
+
+**Resetting mace limits:**
+```
+/timerplugin resetallmaces
+```
+*Resets both Time Mace and regular mace limits, allowing fresh crafting*
 
 **Setting the timer to 25 days:**
 ```
 /timerplugin settime 25
 ```
 
-**Setting the timer to 12.5 days (12 days, 12 hours):**
-```
-/timerplugin settime 12.5
-```
-
-**Hiding the timer from all players:**
-```
-/timerplugin toggletimer
-```
-*Players won't see the boss bar, but the timer continues counting down*
-
 **Giving a Time Mace to a player:**
 ```
 /timerplugin givespecial Notch mace
-```
-
-**Giving a Time Modifier (Heart of the Sea) to a player:**
-```
-/timerplugin givespecial Steve heartofthesea
 ```
 
 **Opening the configuration GUI:**
@@ -133,55 +199,6 @@ effects:
 /timerplugin configgui
 ```
 *Opens an interactive menu to configure timer and mace settings*
-
-**Reloading the configuration:**
-```
-/timerplugin reload
-```
-*Applies changes made to the config.yml file*
-
-**Setting max modification limits:**
-```
-/timerplugin setmaxadd 3
-```
-*Players can now add up to 3 days at once*
-
-```
-/timerplugin setmaxremove 1
-```
-*Players can only remove 1 day at a time*
-
-**Configuring Time Mace settings:**
-```
-/timerplugin setmacedashes 5
-```
-*Time Mace now has 5 charges before cooldown*
-
-```
-/timerplugin setmacecooldown 180
-```
-*Time Mace cooldown set to 3 minutes*
-
-```
-/timerplugin setmacestrength 3.5
-```
-*Dashes are now more powerful*
-
-```
-/timerplugin toggleexplosion
-```
-*Enable/disable time explosion feature*
-
-**Managing the unique Time Mace:**
-```
-/timerplugin macestatus
-```
-*Check if the Time Mace has been crafted*
-
-```
-/timerplugin resetmace
-```
-*Reset mace status - allows someone to craft it again*
 
 ### ⌨️ Tab Completion Features
 
@@ -192,11 +209,6 @@ The plugin includes smart tab completion to make commands easier to use:
 - **🎯 Item Types**: After selecting a player, press `Tab` to see available items (`mace`, `heartofthesea`)
 - **🔢 Timer Values**: For `/timerplugin settime`, get suggestions for common timer values (1, 5, 10, 15, 20, 25, 30)
 - **🔐 Permission-Based**: Only shows commands you have permission to use
-
-**Example Tab Completion Flow:**
-1. Type: `/timerplugin give` + `Tab` → Completes to `/timerplugin givespecial`
-2. Add space and `Tab` → Shows list of online players
-3. Type player name + space + `Tab` → Shows `mace` and `heartofthesea` options
 
 ## 🧪 Developer Testing (Realisticrave Only)
 
@@ -211,39 +223,6 @@ Special testing commands are available exclusively for the plugin developer:
 | `/timerplugin test mace` | 🔄 Reset Time Mace cooldowns and charges |
 | `/timerplugin test effects` | ✨ Test particle effects |
 | `/timerplugin test explosion` | 💥 Test time explosion effect |
-
-### 🖥️ Developer Test GUI Features
-- **🧪 Quick Testing**: Instant access to all plugin features
-- **⏰ Timer Controls**: Set timer to 1 or 30 days instantly
-- **👁️ Visibility Toggle**: Quick timer show/hide testing
-- **📊 Debug Info**: Real-time plugin statistics
-- **🎯 All Items**: Get test items without killing players
-- **🔄 Reset Functions**: Clear cooldowns for repeated testing
-
-### 🖥️ Configuration GUI Navigation
-
-When you use `/timerplugin configgui`, you'll see:
-
-- 🔨 **Time Mace Config** - Configure dash count, cooldowns, explosion settings
-- ⏰ **Timer Config** - Set visibility, max days, modification limits  
-- 🔄 **Reload Config** - Apply changes from config.yml
-
-**🖱️ How to Use Config GUIs:**
-All configuration options in the GUIs are **click-to-cycle** - simply click on any setting to cycle through available values! No need to type commands or remember exact values. Changes are **automatically saved** to your config file.
-
-**Timer Config Options:**
-- 👁️ **Timer Visibility** - Toggle between visible/hidden (click to toggle)
-- 📚 **Max Days** - Set maximum timer value (click to cycle: 10→15→20→25→30→50→100)
-- ⏰ **Current Time** - View/modify current timer value (click to cycle: 1→5→10→15→20→25→30)
-- ➕ **Max Add Days** - Limit how many days can be added at once (click to cycle: 1→2→3→4→5)
-- ➖ **Max Remove Days** - Limit how many days can be removed at once (click to cycle: 1→2→3→4→5)
-
-**Mace Config Options:**
-- 🏃 **Max Dashes** - Set dash charges before cooldown (click to cycle: 1→10)
-- ⏰ **Cooldown** - Set recharge time (click to cycle: 30→60→90→120→180→240 seconds)
-- 💪 **Dash Strength** - Set movement force (click to cycle: 1.0→1.5→2.0→2.5→3.0→3.5→4.0)
-- 💥 **Explosions** - Enable/disable time explosions (click to toggle)
-- 📏 **Explosion Radius** - Set blast range (click to cycle: 3→5→8→10→12→15→20 blocks)
 
 ## 🔐 Permissions
 
@@ -267,12 +246,20 @@ All configuration options in the GUIs are **click-to-cycle** - simply click on a
 - 👑 **ONLY ONE can exist per server** - first to craft it wins!
 - 🎉 **Server-wide announcement** when crafted
 - ⚡ **Special effects** for the legendary crafter
+- 🎆 **Epic title displays** for all players to witness
+
+### ⚔️ Regular Mace (Limited Edition)
+- 🛠️ Standard Minecraft mace with limited availability
+- 📊 **Only 2 can be crafted per server**
+- 🔧 Required ingredient for Time Mace crafting
+- 🎯 Creates strategic value through scarcity
 
 ## 🖥️ Configuration GUI
 
 Admins can use `/timerplugin configgui` to access in-game configuration:
 - ⏰ **Timer Config**: Modify timer settings, visibility, and limits
 - 🔨 **Mace Config**: Adjust Time Mace behavior and cooldowns
+- 🆕 **Mace Management**: Reset crafting limits with click-to-reset interface
 - 🔄 **Reload Config**: Apply changes from the config file
 
 ## 👑 Admin Features
@@ -281,6 +268,12 @@ Admins can use `/timerplugin configgui` to access in-game configuration:
 - 🔄 Use `/timerplugin toggletimer` or the config GUI to hide the timer from players
 - 🕶️ When hidden, players won't see the boss bar but the timer still counts down
 - 🎭 Useful for creating suspense or surprise events
+
+### 🔨 Mace Management
+- 📊 Track all mace crafting with `/timerplugin macestatus`
+- 🔄 Reset individual limits or all limits at once
+- 🖥️ Use the Mace Management GUI for easy click-to-reset functionality
+- 🎆 Control the legendary weapon economy of your server
 
 ## 🛠️ Troubleshooting
 
@@ -293,57 +286,31 @@ If you encounter any issues:
 
 ## 📋 Recent Updates & Changes
 
-### ❌ Removed Features
-- 💀 **Lives System**: No more player lives tracking or management
-- 🧊 **Time Controller**: Time freezing item and all related mechanics removed
-- 🔄 **Revive System**: Player revival mechanics and revive totems removed
-- 📊 **Lives Commands**: `/lives` command and lives checking removed
-- 🤝 **Trust System**: Player trust mechanics and related commands removed
-- ⚔️ **Life Rewards**: No more gaining lives from adding time to timer
+### ✅ New Features Added in v6.4
+- 🎆 **Epic Title Displays**: Server-wide announcements when Time Mace is crafted
+- ⚔️ **Regular Mace Limiting**: Only 2 regular maces can be crafted per server
+- 🛠️ **Enhanced Admin Tools**: New reset commands and management GUI
+- 📊 **Improved Status Tracking**: Better mace count display throughout plugin
+- 🎬 **Cinematic Moments**: Legendary crafting creates memorable server events
 
-### ✅ New Features Added
-- 🔨 **Complete Mace Configuration System**: Added 5 new commands to configure all Time Mace settings
-- 🖱️ **Functional Config GUIs**: Click-to-cycle interface for easy configuration without typing commands
-- ⌨️ **Smart Tab Completion**: Full tab completion system for all commands with context-aware suggestions
-- 🛡️ **Right-Click Only Items**: Both Time Modifier and Time Mace now only activate on right-click
-- 🧪 **Developer Testing Tools**: Comprehensive testing commands available exclusively to Realisticrave
-- ➕➖ **Dynamic Timer Limits**: Commands to adjust max add/remove days on-the-fly
-- 👁️ **Timer Visibility Toggle**: Admins can hide the timer from players completely
-- 🎛️ **Real-Time Configuration**: All changes take effect immediately without server restart
+### ✅ Features from Previous Updates
+- 🔨 **Complete Mace Configuration System**: Commands to configure all Time Mace settings
+- 🖱️ **Functional Config GUIs**: Click-to-cycle interface for easy configuration
+- ⌨️ **Smart Tab Completion**: Full tab completion system for all commands
+- 🛡️ **Right-Click Only Items**: Both Time Modifier and Time Mace only activate on right-click
 - 👑 **Unique Time Mace**: Only one Time Mace can exist per server - legendary exclusivity!
 
 ### 🔄 Updated Features
 - 📝 **Streamlined Commands**: Focused command set with organized help menu
 - 🔨 **Enhanced Time Mace**: Improved effects, better configuration, and more reliable mechanics
 - 🛠️ **Better Admin Tools**: More intuitive configuration management with working GUIs
-- 🎯 **Simplified Focus**: Plugin now centers purely on timer modification and Time Mace mechanics
+- 🎯 **Simplified Focus**: Plugin centers on timer modification and mace mechanics
 - 🖥️ **Professional Interface**: Modern GUI design with click-to-cycle functionality
-- 📖 **Comprehensive Documentation**: Detailed examples, usage instructions, and organized help
-- 🏢 **Professional Licensing**: Now licensed by RavenMC and Crave Inc.
 
-### 🔧 Enhanced Configuration
-- **Timer Settings**: `/timerplugin setmaxadd` and `/timerplugin setmaxremove` commands
-- **Mace Settings**: Complete control over dashes, cooldown, strength, explosions, and radius
-- **Auto-Save**: All GUI changes automatically save to config.yml
-- **Real-Time Updates**: Changes take effect immediately without server restart
-
-### 🖥️ Improved Admin Experience
-- **Click-to-Cycle GUIs**: No more typing - just click to change values
-- **Organized Help Menu**: Commands grouped by category for easy reference
-- **Permission-Based Suggestions**: Only shows commands you can actually use
-- **Instant Feedback**: Confirmation messages for all configuration changes
-
-### 🎯 Better User Experience
-- **Accidental Activation Prevention**: Items only work on right-click
-- **Tab Completion**: Type faster with smart auto-completion
-- **Cleaner Gameplay**: Removed complex systems for streamlined experience
-- **Professional Polish**: Improved error handling and user feedback
-
-### 🧪 Developer Tools (Realisticrave Only)
-- **Test GUI**: Complete testing interface with all debugging tools
-- **Quick Item Access**: Instant items and cooldown resets for development
-- **Effect Testing**: Test particle effects and explosions safely
-- **Timer Manipulation**: Quick timer adjustments for various test scenarios
+### ❌ Removed Features
+- 💀 **Lives System**: No more player lives tracking or management
+- 🧊 **Time Controller**: Time freezing item and all related mechanics removed
+- 🔄 **Revive System**: Player revival mechanics and revive totems removed
 
 ## 📄 License
 

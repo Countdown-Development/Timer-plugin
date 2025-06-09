@@ -13,7 +13,22 @@ A Minecraft Spigot plugin that adds a global timer with Time Mace mechanics. Pla
 - ⚙️ **Admin Configuration**: In-game GUI for easy configuration
 - 🎛️ **Fully Configurable**: Customize all aspects of the plugin through the config
 
-## 🆕 What's New in v6.4 - Mace Mastery Update
+## 🆕 What's New in v6.5 - Mace Limit Fix
+
+### 🔧 Bug Fix Update: Enhanced Mace System
+
+### ✅ Fixed Issues:
+- **Regular mace limit increased from 2 to 3 total per server**
+- **Fixed crafting count bug that caused incorrect increments**
+- **Improved event handling to prevent double-counting**
+- **Updated all displays to show correct "X/3" format**
+
+### ⚔️ Mace System Now:
+- **3 regular maces + 1 unique Time Mace per server**
+- **Accurate crafting counters and status displays**
+- **Better server weapon economy balance**
+
+### 🔧 Quick hotfix for servers experiencing mace counting issues.
 
 ### 🎬 **Epic Title Displays**
 - **Server-wide announcements** when the Time Mace is crafted
@@ -161,7 +176,7 @@ effects:
 | `/timerplugin toggleexplosion` | 💥 Toggle time explosions | `timerplugin.admin` | `/timerplugin toggleexplosion` |
 | `/timerplugin setexplosionradius <blocks>` | 📏 Set explosion radius | `timerplugin.admin` | `/timerplugin setexplosionradius 12` |
 
-### 🆕 Mace Management Commands (New in v6.4)
+### 🆕 Mace Management Commands (New in v6.5)
 
 | Command | Description | Permission | Usage |
 |---------|-------------|------------|-------|
@@ -286,7 +301,7 @@ If you encounter any issues:
 
 ## 📋 Recent Updates & Changes
 
-### ✅ New Features Added in v6.4
+### ✅ New Features Added in v6.5
 - 🎆 **Epic Title Displays**: Server-wide announcements when Time Mace is crafted
 - ⚔️ **Regular Mace Limiting**: Only 3 regular maces can be crafted per server
 - 🛠️ **Enhanced Admin Tools**: New reset commands and management GUI
